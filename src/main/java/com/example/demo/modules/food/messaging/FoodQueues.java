@@ -1,0 +1,31 @@
+package com.example.demo.modules.food.messaging;
+
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+
+@Configuration
+public class FoodQueues {
+    public static final String ORDER_QUEUE = "order.queue";
+    public static final String ORDER_DLQ = "order.dlq";
+    public static final String OrderQueueQualifierName = "OrderQueueQualifierName";
+    public static final String OrderDlqQueueQualifier = "OrderDlqQueueQualifier";
+
+
+    @Qualifier(OrderQueueQualifierName)
+    @Bean
+    public Queue orderQueue() {
+        return new Queue(ORDER_QUEUE, true , false , false);
+    }
+
+
+
+    @Qualifier(OrderDlqQueueQualifier)
+    @Bean
+    public Queue orderDlqQueue() {
+        return new Queue(ORDER_DLQ, true);
+    }
+}
