@@ -11,15 +11,5 @@ public class RabbitmqPokeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RabbitmqPokeApplication.class, args);
-
-
 	}
-
-	@Bean
-	public CommandLineRunner testRabbit(OrderProducer orderProducer) {
-		return args -> {
-			orderProducer.sendTestOrder();
-		};
-	}
-
 }

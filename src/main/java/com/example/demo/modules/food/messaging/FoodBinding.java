@@ -1,5 +1,4 @@
 package com.example.demo.modules.food.messaging;
-
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
@@ -7,9 +6,7 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import static com.example.demo.modules.food.messaging.FoodExchanges.ORDER_DLX_EXCHANGE_QUALIFIER;
-import static com.example.demo.modules.food.messaging.FoodQueues.OrderDlqQueueQualifier;
 
 @Configuration
 public class FoodBinding {
@@ -27,7 +24,7 @@ public class FoodBinding {
 
 
     @Bean
-    public Binding orderDLQBinding(@Qualifier(OrderDlqQueueQualifier) Queue orderDLQ, @Qualifier(ORDER_DLX_EXCHANGE_QUALIFIER) DirectExchange orderDLX) {
+    public Binding orderDLQBinding(@Qualifier(FoodQueues.OrderDlqQueueQualifier) Queue orderDLQ, @Qualifier(ORDER_DLX_EXCHANGE_QUALIFIER) DirectExchange orderDLX) {
         return BindingBuilder
                 .bind(orderDLQ)
                 .to(orderDLX)
